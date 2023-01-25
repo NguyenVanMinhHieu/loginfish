@@ -1,0 +1,20 @@
+
+You can use bash to parse /etc/profile and ~/.profile, and then start fish.
+
+Create /usr/bin/fishlogin with contents
+
+        #!/bin/bash -l
+        exec -l fish "$@"
+Make it executable
+
+        sudo chmod a+rx /usr/bin/fishlogin
+
+Check that it works by running fishlogin and checking that you end up in a Fish shell. Press Control+D to exit the Fish shell.
+
+Add it to /etc/shells
+
+       echo /usr/bin/fishlogin | sudo tee -a /etc/shells
+
+Set it as your default shell.Under Linux:
+
+       sudo usermod -s /usr/bin/fishlogin $USER
